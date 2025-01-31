@@ -2,7 +2,7 @@ resource "aws_cloudwatch_event_rule" "daily_check" {
   name                = var.eventbridge_name
   schedule_expression = "cron(0 18 * * ? *)"
   tags = merge(var.common_tags, {
-    Name        = var.lambda_name
+    Name        = var.eventbridge_name
     Environment = var.environment
   })
 }
