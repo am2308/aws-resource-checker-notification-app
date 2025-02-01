@@ -46,12 +46,6 @@ variable "sns_topic_name" {
   default     = "temp-resource-alerts"
 }
 
-#variable "slack_webhook_url" {
-#  description = "Slack webhook URL"
-#  type        = string
-#  default     = ""
-#}
-
 ## Lambda module specific variables
 
 variable "lambda_name" {

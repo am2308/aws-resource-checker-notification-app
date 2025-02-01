@@ -31,7 +31,9 @@ def lambda_handler(event, context):
             message = f"The following EC2 instances are still running: {', '.join(running_instances)}"
             sns_client.publish(TopicArn=SNS_TOPIC_ARN, Message=message, Subject="Temp EC2 Alert")
             response = secret_client.get_secret_value(SecretId=SLACK_SECRET_NAME)
-            url = response["Url"]
+            webhook_url = response["SecretString"]
+            parsed_response = json.loads(webhook_url)
+            url = parsed_response["Url"]
             msg = {
                 "username": "Aws Resource Checker",
                 "text": message,
