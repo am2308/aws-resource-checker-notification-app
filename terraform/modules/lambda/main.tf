@@ -3,7 +3,7 @@ resource "null_resource" "zip_lambda" {
     always_run = timestamp() # Ensures this runs on every Terraform apply
   }
   provisioner "local-exec" {
-    command = "cd ${path.module} && zip lambda.zip lambda_function.py && mv lambda.zip ${path.root}/lambda.zip && pwd && ls -lart"
+    command = "cd ${path.module} && zip lambda.zip lambda_function.py && mv lambda.zip ${path.root}/ && pwd && ls -lart"
   }
 }
 
