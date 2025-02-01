@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -29,10 +30,10 @@ jobs:
           terraform_version: 1.3.0
 
       - name: Configure AWS Credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-session-name: GitHubActions
+          audience: sts.amazonaws.com
           aws-region: ${{ env.AWS_REGION }}
 
       #- name: Configure AWS Credentials (Access Key)
