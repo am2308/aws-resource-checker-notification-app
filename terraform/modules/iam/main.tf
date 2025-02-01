@@ -48,6 +48,11 @@ resource "aws_iam_policy" "lambda_permissions" {
       "Effect": "Allow",
       "Action": "sns:Publish",
       "Resource": "arn:aws:sns:${var.region}:${var.aws_account_id}:${var.sns_topic_name}"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "secretsmanager:GetSecretValue",
+      "Resource": "arn:aws:secretsmanager:${var.region}:${var.aws_account_id}:secret:$(var.slack_webhook_secret_name)"
     }
   ]
 }

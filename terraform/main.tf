@@ -1,12 +1,13 @@
 data "aws_caller_identity" "current" {}
 
 module "lambda" {
-  source          = "./modules/lambda"
-  lambda_name     = var.lambda_name
-  sns_topic_arn   = module.sns.sns_topic_arn
-  lambda_role_arn = module.iam.lambda_role_arn
-  environment     = var.env
-  common_tags     = var.common_tags
+  source                    = "./modules/lambda"
+  lambda_name               = var.lambda_name
+  sns_topic_arn             = module.sns.sns_topic_arn
+  lambda_role_arn           = module.iam.lambda_role_arn
+  environment               = var.env
+  slack_webhook_secret_name = var.slack_webhook_secret_name
+  common_tags               = var.common_tags
 }
 
 module "eventbridge" {
@@ -28,14 +29,15 @@ module "sns" {
 }
 
 module "iam" {
-  source                   = "./modules/iam"
-  iam_lambda_role_name     = var.iam_lambda_role_name
-  region                   = var.aws_region
-  aws_account_id           = data.aws_caller_identity.current.account_id
-  aws_cloudwatch_log_group = var.aws_cloudwatch_log_group
-  environment              = var.env
-  common_tags              = var.common_tags
-  sns_topic_name           = var.sns_topic_name
+  source                    = "./modules/iam"
+  iam_lambda_role_name      = var.iam_lambda_role_name
+  region                    = var.aws_region
+  aws_account_id            = data.aws_caller_identity.current.account_id
+  aws_cloudwatch_log_group  = var.aws_cloudwatch_log_group
+  environment               = var.env
+  common_tags               = var.common_tags
+  sns_topic_name            = var.sns_topic_name
+  slack_webhook_secret_name = var.slack_webhook_secret_name
 }
 
 module "monitoring" {

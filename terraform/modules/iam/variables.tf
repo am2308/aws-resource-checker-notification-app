@@ -32,3 +32,8 @@ variable "aws_cloudwatch_log_group" {
   description = "AWS CloudWatch log group name"
   type        = string
 }
+
+variable "slack_webhook_secret_name" {
+  description = "Slack webhook URL"
+  type        = string
+}

@@ -16,7 +16,8 @@ resource "aws_lambda_function" "check_temp_resources" {
   timeout       = 300
   environment {
     variables = {
-      SNS_TOPIC_ARN = var.sns_topic_arn
+      SNS_TOPIC_ARN     = var.sns_topic_arn,
+      SLACK_SECRET_NAME = var.slack_webhook_secret_name
     }
   }
   tracing_config {

@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 
 ec2_client = boto3.client("ec2")
 sns_client = boto3.client("sns")
+secret_client = boto3.client("secretsmanager")
 SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
+SLACK_SECRET_NAME = os.environ.get("SLACK_SECRET_NAME")
 
 def lambda_handler(event, context):
     try:
@@ -28,7 +30,8 @@ def lambda_handler(event, context):
         if running_instances:
             message = f"The following EC2 instances are still running: {', '.join(running_instances)}"
             sns_client.publish(TopicArn=SNS_TOPIC_ARN, Message=message, Subject="Temp EC2 Alert")
-            url = "https://hooks.slack.com/services/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"
+            response = secret_client.get_secret_value(SecretId=SLACK_SECRET_NAME)
+            url = response["Url"]
             msg = {
                 "username": "Aws Resource Checker",
                 "text": message,
