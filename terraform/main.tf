@@ -37,6 +37,7 @@ module "iam" {
   common_tags               = var.common_tags
   sns_topic_name            = var.sns_topic_name
   slack_webhook_secret_name = var.slack_webhook_secret_name
+  kms_key_id                = module.kms.kms_key_id
 }
 
 module "monitoring" {

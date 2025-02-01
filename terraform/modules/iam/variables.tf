@@ -37,3 +37,8 @@ variable "slack_webhook_secret_name" {
   description = "Slack webhook URL"
   type        = string
 }
+
+variable "kms_key_id" {
+  description = "KMS key ID"
+  type        = string
+}
