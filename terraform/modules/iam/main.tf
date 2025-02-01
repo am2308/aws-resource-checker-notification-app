@@ -47,7 +47,7 @@ resource "aws_iam_policy" "lambda_permissions" {
     {
       "Effect": "Allow",
       "Action": "sns:Publish",
-      "Resource": "arn:aws:sns:${var.region}:${var.aws_account_id}:${var.sns_topic_arn}"
+      "Resource": "arn:aws:sns:${var.region}:${var.aws_account_id}:${var.sns_topic_name}"
     }
   ]
 }

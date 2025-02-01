@@ -13,8 +13,8 @@ variable "common_tags" {
   type        = map(string)
 }
 
-variable "sns_topic_arn" {
-  description = "SNS topic ARN for notifications"
+variable "sns_topic_name" {
+  description = "Name of the SNS topic"
   type        = string
 }
 

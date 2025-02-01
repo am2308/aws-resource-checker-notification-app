@@ -35,7 +35,7 @@ module "iam" {
   aws_cloudwatch_log_group = var.aws_cloudwatch_log_group
   environment              = var.env
   common_tags              = var.common_tags
-  sns_topic_arn            = module.sns.sns_topic_arn
+  sns_topic_name            = var.sns_topic_name
 }
 
 module "monitoring" {
