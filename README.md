@@ -1,7 +1,7 @@
-# AWS Temporary Resource Checker
+# AWS Temporary Resource Checker Notification App
 
 ## Overview
-This solution deploys an AWS Lambda function that checks for temporary EC2 instances with the naming prefix `temp-ad-hoc-*` and notifies a configured SNS email.
+This solution deploys an AWS Lambda function that checks for temporary EC2 instances with the naming prefix `temp-ad-hoc-*` and notifies a configured SNS email & slack.
 
 ## Architecture
 - **Terraform** provisions the infrastructure.
@@ -10,6 +10,7 @@ This solution deploys an AWS Lambda function that checks for temporary EC2 insta
 - **CloudWatch Events** triggers the Lambda function daily at 6 PM.
 - **IAM Policies** restrict Lambda access.
 - **Monitoring** via CloudWatch Logs and Alarms.
+- **KMS** Encrypt sns topic and cloudwatch log group.
 
 ## Prerequisites
 - An AWS account
@@ -89,7 +90,7 @@ Once the GitHub Actions workflow is configured, pushing changes to the `main` br
    git push origin main
    ```
 2. **GitHub Actions Workflow Triggers:**
-   - Runs Terraform initialization, validation, and security scans.
+   - Runs Terraform initialization, validation, and security scans by executing **GitHub Repository → Actions → Terraform CI/CD** workflow.
    - Requires manual approval before deployment.
    - Deploys the infrastructure if approved.
 
@@ -99,13 +100,8 @@ Once the GitHub Actions workflow is configured, pushing changes to the `main` br
 - AWS CloudWatch Logs will capture Lambda execution details.
 
 ## Cleanup via GitHub Actions
-To destroy resources, create a new branch and push an empty commit:
-```sh
-git checkout -b cleanup
-git commit --allow-empty -m "Trigger cleanup"
-git push origin cleanup
-```
-Then, open a pull request, and upon approval, the Terraform destroy action will execute.
+To destroy resources, execute workflow **GitHub Repository → Actions → Terraform Destroy CI/CD**:
+Then upon approval, the Terraform destroy action will execute.
 
 ## Additional Notes
 - All AWS interactions should be done via GitHub Actions.

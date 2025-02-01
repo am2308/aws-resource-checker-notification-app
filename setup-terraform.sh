@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create main Terraform directory
-mkdir -p terraform/{modules/lambda,modules/eventbridge,modules/sns,modules/iam,modules/monitoring,vars/test}
+mkdir -p terraform/{modules/lambda,modules/eventbridge,modules/sns,modules/iam,modules/monitoring,modules/kms,vars/test}
 
 # Create root-level Terraform files
 touch terraform/{main.tf,variables.tf,outputs.tf,providers.tf,terraform.tf}
@@ -13,7 +13,7 @@ touch terraform/vars/test/test.backend.tfvars
 touch terraform/vars/test/test.tfvars
 
 # Create module Terraform files
-for module in lambda eventbridge sns iam monitoring; do
+for module in lambda eventbridge sns iam monitoring kms; do
   touch terraform/modules/$module/{main.tf,variables.tf,outputs.tf}
 done
 
