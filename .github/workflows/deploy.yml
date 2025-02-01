@@ -63,9 +63,6 @@ jobs:
           format: "json"
           output_file: "tfsec-results.json"
 
-      - name: Show tfsec results
-        run: cat tfsec-results.json
-
       - name: Terraform Plan
         working-directory: terraform
         run: terraform plan -var-file=vars/test/test.tfvars -out=tfplan
