@@ -28,7 +28,7 @@ def lambda_handler(event, context):
         if running_instances:
             message = f"The following EC2 instances are still running: {', '.join(running_instances)}"
             sns_client.publish(TopicArn=SNS_TOPIC_ARN, Message=message, Subject="Temp EC2 Alert")
-            url = "https://hooks.slack.com/services/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"
+            url = "https://hooks.slack.com/services/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"
             msg = {
                 "username": "Aws Resource Checker",
                 "text": message,

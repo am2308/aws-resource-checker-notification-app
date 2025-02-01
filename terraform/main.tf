@@ -18,13 +18,13 @@ module "eventbridge" {
 }
 
 module "sns" {
-  source            = "./modules/sns"
-  sns_topic_name    = var.sns_topic_name
-  slack_webhook_url = var.slack_webhook_url
-  sns_email         = var.sns_email
-  kms_key_sns       = var.kms_key_sns
-  common_tags       = var.common_tags
-  environment       = var.env
+  source         = "./modules/sns"
+  sns_topic_name = var.sns_topic_name
+  #slack_webhook_url = var.slack_webhook_url
+  sns_email   = var.sns_email
+  kms_key_sns = var.kms_key_sns
+  common_tags = var.common_tags
+  environment = var.env
 }
 
 module "iam" {
@@ -35,7 +35,7 @@ module "iam" {
   aws_cloudwatch_log_group = var.aws_cloudwatch_log_group
   environment              = var.env
   common_tags              = var.common_tags
-  sns_topic_name            = var.sns_topic_name
+  sns_topic_name           = var.sns_topic_name
 }
 
 module "monitoring" {
