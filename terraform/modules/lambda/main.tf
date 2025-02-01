@@ -12,7 +12,7 @@ resource "aws_lambda_function" "check_temp_resources" {
   role          = var.lambda_role_arn
   runtime       = "python3.9"
   handler       = "lambda_function.lambda_handler"
-  filename      = "lambda.zip"
+  filename      = "${path.root}/lambda.zip"
   timeout       = 300
   environment {
     variables = {
