@@ -81,11 +81,6 @@ variable "eventbridge_name" {
   default     = "daily_temp_resource_check"
 }
 
-
-variable "kms_key_cw_log_group" {
-  description = "KMS key"
-}
-
 variable "kms_key_sns" {
   description = "KMS key for SNS"
   type        = string

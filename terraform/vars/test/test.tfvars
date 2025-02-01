@@ -7,5 +7,4 @@ slack_webhook_url        = "https://hooks.slack.com/services/TFPCUKX88/B08B2JR1T
 iam_lambda_role_name     = "lambda_execution_role"
 aws_cloudwatch_log_group = "/aws/lambda/check_temp_resources"
 alert_name               = "lambda_errors"
-kms_key_cw_log_group     = "alias/aws/logs"
 kms_key_sns              = "alias/aws/sns"

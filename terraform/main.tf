@@ -41,7 +41,6 @@ module "iam" {
 module "monitoring" {
   source                   = "./modules/monitoring"
   aws_cloudwatch_log_group = var.aws_cloudwatch_log_group
-  kms_key_cw_log_group     = var.kms_key_cw_log_group
   environment              = var.env
   common_tags              = var.common_tags
   alert_name               = var.alert_name
