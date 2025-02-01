@@ -1,3 +1,18 @@
+/*
+ * This Terraform configuration file sets up various AWS resources and modules for a notification application.
+ * 
+ * Modules:
+ * - lambda: Configures an AWS Lambda function with necessary parameters such as name, SNS topic ARN, IAM role ARN, environment variables, and common tags.
+ * - eventbridge: Configures an AWS EventBridge rule to trigger the Lambda function, with parameters for the EventBridge name, Lambda ARN, environment variables, and common tags.
+ * - sns: Configures an AWS SNS topic with parameters for the topic name, email subscription, environment variables, common tags, and KMS key for encryption.
+ * - iam: Configures IAM roles and policies for the Lambda function, with parameters for the role name, AWS region, account ID, CloudWatch log group, environment variables, common tags, SNS topic name, Slack webhook secret name, and KMS key ID.
+ * - monitoring: Sets up CloudWatch monitoring and alerts, with parameters for the log group, environment variables, common tags, alert name, SNS topic ARN, and KMS key.
+ * - kms: Configures an AWS KMS key for encryption, with parameters for the environment variables, common tags, AWS account ID, alias, and region.
+ * 
+ * Data Sources:
+ * - aws_caller_identity: Retrieves information about the current AWS account, such as the account ID.
+ */
+
 data "aws_caller_identity" "current" {}
 
 module "lambda" {

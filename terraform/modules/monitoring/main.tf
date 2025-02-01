@@ -1,3 +1,14 @@
+/*
+ * This Terraform configuration file defines resources for monitoring AWS Lambda functions.
+ * 
+ * Resources:
+ * 1. aws_cloudwatch_log_group.lambda_log_group:
+ *    - Creates a CloudWatch Log Group for Lambda function logs.
+ * 2. aws_cloudwatch_metric_alarm.lambda_errors:
+ *    - Creates a CloudWatch Metric Alarm for monitoring Lambda function errors.
+ */
+
+
 resource "aws_cloudwatch_log_group" "lambda_log_group" {
   name              = var.aws_cloudwatch_log_group
   retention_in_days = 30

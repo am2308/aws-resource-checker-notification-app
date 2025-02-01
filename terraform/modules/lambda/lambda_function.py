@@ -16,6 +16,22 @@ SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
 SLACK_SECRET_NAME = os.environ.get("SLACK_SECRET_NAME")
 
 def lambda_handler(event, context):
+    """
+    AWS Lambda function to check for running EC2 instances with a specific tag and send notifications.
+
+    This function performs the following steps:
+    1. Describes EC2 instances with the tag "Name" and value pattern "temp-ad-hoc-*".
+    2. Collects the instance IDs of running instances.
+    3. If there are running instances, sends a notification via SNS and Slack.
+    4. Logs the notification status or absence of running instances.
+
+    Parameters:
+    event (dict): AWS Lambda event data.
+    context (object): AWS Lambda context object.
+
+    Raises:
+    Exception: If any error occurs during the execution of the function.
+    """
     try:
         response = ec2_client.describe_instances(
             Filters=[{"Name": "tag:Name", "Values": ["temp-ad-hoc-*"]}]
