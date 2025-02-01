@@ -1,6 +1,18 @@
 resource "null_resource" "zip_lambda" {
+  triggers = {
+    always_run = timestamp() # Ensures this runs on every Terraform apply
+  }
   provisioner "local-exec" {
     command = "cd ${path.module} && zip ${path.root}/lambda.zip lambda_function.py"
+  }
+}
+
+resource "null_resource" "look_zip" {
+  triggers = {
+    always_run = timestamp() # Ensures this runs on every Terraform apply
+  }
+  provisioner "local-exec" {
+    command = "ls -lart terraform && ls -lart terraform/modules && ls -lart terraform/modules/lambda"
   }
 }
 
@@ -22,4 +34,5 @@ resource "aws_lambda_function" "check_temp_resources" {
     Name        = var.lambda_name
     Environment = var.environment
   })
+  depends_on = [null_resource.zip_lambda]
 }
