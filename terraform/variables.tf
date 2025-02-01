@@ -86,3 +86,9 @@ variable "slack_webhook_secret_name" {
   type        = string
   default     = ""
 }
+
+variable "alias" {
+  description = "Alias for the KMS key"
+  type        = string
+  default     = "alias/aws/sns"
+}

@@ -1,6 +1,7 @@
 resource "aws_cloudwatch_log_group" "lambda_log_group" {
   name              = var.aws_cloudwatch_log_group
   retention_in_days = 30
+  kms_key_id        = var.kms_key
   tags = merge(var.common_tags, {
     Name        = var.aws_cloudwatch_log_group
     Environment = var.environment

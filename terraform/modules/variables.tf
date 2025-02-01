@@ -1,11 +1,10 @@
-variable "sns_topic_name" {
-  description = "Name of the SNS topic"
+variable "aws_account_id" {
+  description = "AWS account ID"
   type        = string
-  default     = "temp-resource-alerts"
 }
 
-variable "sns_email" {
-  description = "Email address for SNS notifications"
+variable "region" {
+  description = "AWS region"
   type        = string
 }
 
@@ -19,7 +18,7 @@ variable "common_tags" {
   type        = map(string)
 }
 
-variable "kms_key" {
-  description = "KMS key for SNS"
+variable "alias" {
+  description = "Alias for the Lambda function"
   type        = string
 }

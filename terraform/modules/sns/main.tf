@@ -1,6 +1,6 @@
 resource "aws_sns_topic" "notification_topic" {
   name              = var.sns_topic_name
-  kms_master_key_id = var.kms_key_sns
+  kms_master_key_id = var.kms_key
   tags = merge(var.common_tags, {
     Name        = var.sns_topic_name
     Environment = var.environment

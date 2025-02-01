@@ -25,6 +25,7 @@ module "sns" {
   kms_key_sns    = var.kms_key_sns
   common_tags    = var.common_tags
   environment    = var.env
+  kms_key        = module.kms.kms_key_arn
 }
 
 module "iam" {
@@ -46,4 +47,14 @@ module "monitoring" {
   common_tags              = var.common_tags
   alert_name               = var.alert_name
   sns_topic_arn            = module.sns.sns_topic_arn
+  kms_key                  = module.kms.kms_key_arn
+}
+
+module "kms" {
+  source         = "./modules/kms"
+  environment    = var.env
+  common_tags    = var.common_tags
+  aws_account_id = data.aws_caller_identity.current.account_id
+  alias          = var.alias
+  region         = var.aws_region
 }
