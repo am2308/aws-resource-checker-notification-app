@@ -30,7 +30,7 @@ module "sns" {
 module "iam" {
   source                   = "./modules/iam"
   iam_lambda_role_name     = var.iam_lambda_role_name
-  region                   = var.region
+  region                   = var.aws_region
   aws_account_id           = data.aws_caller_identity.current.account_id
   aws_cloudwatch_log_group = var.aws_cloudwatch_log_group
   environment              = var.env
