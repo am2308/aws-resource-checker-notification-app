@@ -22,3 +22,8 @@ variable "common_tags" {
   description = "Common tags"
   type        = map(string)
 }
+
+variable "slack_webhook_secret_name" {
+  description = "Slack webhook URL"
+  type        = string
+}
