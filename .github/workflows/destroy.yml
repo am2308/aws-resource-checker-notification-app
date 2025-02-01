@@ -1,9 +1,6 @@
 name: "Terraform Destroy CI/CD"
 on:
   workflow_dispatch:  # Manual trigger to prevent accidental deletions
-  push:
-    branches:
-      - main
 
 jobs:
   terraform-destroy:
