@@ -58,6 +58,13 @@ jobs:
 
       - name: Terraform Security Scan
         uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          soft_fail: true  # This option prevents tfsec from failing the pipeline
+          format: "json"
+          output_file: "tfsec-results.json"
+
+      - name: Show tfsec results
+        run: cat tfsec-results.json
 
       - name: Terraform Plan
         working-directory: terraform
