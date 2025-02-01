@@ -22,7 +22,6 @@ module "sns" {
   source         = "./modules/sns"
   sns_topic_name = var.sns_topic_name
   sns_email      = var.sns_email
-  kms_key_sns    = var.kms_key_sns
   common_tags    = var.common_tags
   environment    = var.env
   kms_key        = module.kms.kms_key_arn

@@ -75,12 +75,6 @@ variable "eventbridge_name" {
   default     = "daily_temp_resource_check"
 }
 
-variable "kms_key_sns" {
-  description = "KMS key for SNS"
-  type        = string
-  default     = "alias/aws/sns"
-}
-
 variable "slack_webhook_secret_name" {
   description = "Slack webhook URL"
   type        = string
