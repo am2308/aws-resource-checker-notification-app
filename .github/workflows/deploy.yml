@@ -11,6 +11,7 @@ jobs:
   terraform:
     name: "Terraform Plan & Apply"
     runs-on: ubuntu-latest
+    environment: test
     permissions:
       id-token: write
       contents: read
