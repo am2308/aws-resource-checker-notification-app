@@ -15,6 +15,9 @@ resource "aws_lambda_function" "check_temp_resources" {
       SNS_TOPIC_ARN = var.sns_topic_arn
     }
   }
+  tracing_config {
+    mode = "Active"
+  }
   tags = merge(var.common_tags, {
     Name        = var.lambda_name
     Environment = var.environment

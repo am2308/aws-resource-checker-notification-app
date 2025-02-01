@@ -22,3 +22,7 @@ variable "sns_topic_arn" {
   description = "SNS topic ARN for notifications"
   type        = string
 }
+
+variable "kms_key_cw_log_group" {
+  description = "KMS key"
+}

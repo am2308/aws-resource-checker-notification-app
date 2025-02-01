@@ -8,8 +8,8 @@ resource "aws_cloudwatch_event_rule" "daily_check" {
 }
 
 resource "aws_cloudwatch_event_target" "lambda_target" {
-  rule      = aws_cloudwatch_event_rule.daily_check.name
-  arn       = var.lambda_arn
+  rule = aws_cloudwatch_event_rule.daily_check.name
+  arn  = var.lambda_arn
 }
 
 resource "aws_lambda_permission" "allow_cloudwatch" {

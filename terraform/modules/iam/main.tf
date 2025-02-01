@@ -35,7 +35,7 @@ resource "aws_iam_policy" "lambda_permissions" {
         "logs:CreateLogStream",
         "logs:PutLogEvents"
       ],
-      "Resource": "arn:aws:logs:*:*:*"
+      "Resource": "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${var.aws_cloudwatch_log_group}:*"
     },
     {
       "Effect": "Allow",
@@ -47,7 +47,7 @@ resource "aws_iam_policy" "lambda_permissions" {
     {
       "Effect": "Allow",
       "Action": "sns:Publish",
-      "Resource": "arn:aws:sns:*:*:var.sns_topic_arn"
+      "Resource": "arn:aws:sns:${var.region}:${var.aws_account_id}:${var.sns_topic_arn}"
     }
   ]
 }
