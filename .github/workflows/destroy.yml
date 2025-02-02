@@ -53,10 +53,6 @@ jobs:
         working-directory: terraform
         run: terraform plan -destroy -var-file=vars/test/test.tfvars -out=tfplan-destroy
 
-      - name: Manual Approval for Destroy
-        if: github.event_name == 'workflow_dispatch'
-        uses: hmarr/auto-approve-action@v2  # Requires manual approval before destruction
-
       - name: Terraform Destroy
         working-directory: terraform
         run: terraform destroy -auto-approve -var-file=vars/test/test.tfvars
